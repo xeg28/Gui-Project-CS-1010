@@ -13,10 +13,14 @@ frame_4 = tk.Frame(display,bg='indianred1')
 frame_4.place(x=0, y=0, relwidth=1, relheight=1)
 
 #labels in frame 4
-label_1 = tk.Label(frame_4,text="Question variable will go here\nnext line",
-                   borderwidth=1, relief='solid',bg='deep sky blue',
-                   font=('Times New Roman', '20', 'bold'))
-label_1.place(x=0,y=0,relwidth=1,relheight=.15)
+text_1 = tk.Text(frame_4,bg='deep sky blue',
+                  font=('Times New Roman', '20', 'bold'))
+text_1.tag_configure('center',justify='center', wrap='word')
+text_1.insert('1.0','Question variable will go here')
+text_1.config(state='disabled',borderwidth=1,
+            relief='solid')
+text_1.tag_add('center','1.0','end')
+text_1.place(x=0,y=0,relwidth=1,relheight=.15)
 label_2 = tk.Label(frame_4,text='A.',bg='indianred1',
                    font=('Arial','16'))
 label_2.place(rely=.25,relx=.05,relheight=.05, anchor='w')
@@ -30,10 +34,13 @@ label_5 = tk.Label(frame_4,text='D.',bg='indianred1',
                    font=('Arial','16'))
 label_5.place(rely=.55,relx=.05,relheight=.05, anchor='w')
 #labels in frame 5
-label_6 = tk.Label(frame_5,text="Question variable will go here\nnext line",
-                   borderwidth=1, relief='solid',bg='deep sky blue',
-                   font=('Times New Roman', '20', 'bold'))
-label_6.place(x=0,y=0,relwidth=1,relheight=.15)
+text_2 = tk.Text(frame_5, borderwidth=1, relief='solid',
+                  bg='deep sky blue', font=('Times New Roman', '20', 'bold'))
+text_2.tag_configure('center', justify='center', wrap='word')
+text_2.insert('1.0','Question variable will go here')
+text_2.config(state='disabled')
+text_2.tag_add('center', '1.0', 'end')
+text_2.place(x=0,y=0,relwidth=1,relheight=.15)
 label_7 = tk.Label(frame_5,text='A.',bg='indianred1',
                    font=('Arial','16'))
 label_7.place(rely=.25,relx=.05,relheight=.05, anchor='w')
