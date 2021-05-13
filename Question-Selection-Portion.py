@@ -15,8 +15,8 @@ label_1 = tk.Label(frame_2,text ='Customize Question #',
                    font=('Times New Roman', '24', 'bold'))
 label_1.place(x=0,y=0,relwidth = 1, relheight = .08)
 label_2 = tk.Label(frame_2,text = 'Type of Question', bg='indianred1',
-                   font=('Arial', '20'))
-label_2.place(rely=.1,relwidth=1, relheight = .05)
+                   relief='sunken', font=('Arial', '20', 'bold'))
+label_2.place(rely=.125, relx=.32)
 #radio buttons
 radioVar = tk.IntVar()
 radioVar.set(0)
@@ -32,12 +32,12 @@ radio_3.config(text="True or False", variable=radioVar, value=3,
 radio_4 = tk.Radiobutton(frame_2)
 radio_4.config(text="Short Response", variable=radioVar, value=4,
                bg='indianred1', font=('Arial', '16'))
-radio_1.place(rely = .23,relx= .25, relheight = .05, anchor = 'w')
-radio_2.place(rely = .33,relx= .25, relheight = .05, anchor = 'w')
-radio_3.place(rely = .43,relx= .25, relheight = .05, anchor = 'w')
-radio_4.place(rely = .53,relx= .25, relheight = .05, anchor = 'w')
+radio_1.place(rely = .25,relx= .25, relheight = .05, anchor = 'w')
+radio_2.place(rely = .35,relx= .25, relheight = .05, anchor = 'w')
+radio_3.place(rely = .45,relx= .25, relheight = .05, anchor = 'w')
+radio_4.place(rely = .55,relx= .25, relheight = .05, anchor = 'w')
 #Buttons
 button_1 = tk.Button(frame_2, text='Next', bg='limegreen',
                      font=('Arial','16'), width=7, command=doButton_1)
-button_1.place(rely = .7, relx= .8)
-display.mainloop
+button_1.place(rely = .8, relx= .8)
+display.mainloop()
