@@ -25,3 +25,4 @@ my_radio_2.config(text=input("write false answer here"), variable=my_tkVar, valu
 my_radio_2.grid(row = 60, column = 0, pady = 2)
 #my_radio_1.pack()
 #my_radio_2.pack()
+
