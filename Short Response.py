@@ -9,6 +9,11 @@ frame_5= tk.Frame(root, bg='indianred1')
 frame_5.place(x=0,y=0,relwidth=1, relheight=1)
 # Labels and text boxes
 txtBox1= tk.Entry(frame_5,font=('Raleway', '12'))
+txtBox1.tag_configure('center', justfy='center', wrap='word')
+txtBox1.insert('1.0','Question Variable will go here')
+txtBox1.config(state='disabled',borderwidth=1,
+               relief='solid')
+txtBox1.tag_add('center','1.0','end')
 txtBox1.place(relx =.05, rely=.11, relheight=.10, relwidth=.9)
 Label_1 = tk.Label(frame_5,text= "Type your question in the box.", relief='solid',
                       borderwidth = 1, bg='deep sky blue', 
