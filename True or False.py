@@ -1,26 +1,33 @@
+  
 import tkinter as tk
 
-groot = tk.Tk()
-groot.title("True or False")
-groot.geometry("650x700")
-groot.configure(bg='red')
+root = tk.Tk()
+root.title("True or False")
+root.geometry("650x700")
+root.configure(bg='red')
 
 my_tkVar = tk.IntVar()
 my_tkVar.set(2)
 
+frame_4 = tk.Frame(root, bg='indianred1')
+frame_4.place(x=0, y=0, relwidth=1, relheight=1)
+#Labels and text entries
+titleLabel2 = tk.Label(frame_4,text= "Type your question in the box.", relief='solid',
+                      borderwidth = 1, bg='deep sky blue', 
+                      font=('Times New Roman', '24', 'bold'))
+titleLabel2.place(x=0,y=0,relwidth=1,relheight=.08)
 
-L1 = tk.Label(groot, text="Question", font=('arial', 25))
-L1.grid(row = 0, column = 0, pady = 2)
+txtbox1= tk.Entry(frame_4,font=('Raleway', '12'))
+txtbox1.place(relx =.05, rely=.11, relheight=.10, relwidth=.9)
 
-L2 = tk.Label(groot, text=input("Question goes here"), font=('arial', 20))
-L2.grid(row = 1, column = 0, pady = 2)
 
-my_radio_1 = tk.Radiobutton(groot)
-my_radio_1.config(text=input("write true answer here"), variable=my_tkVar, value=1, font=(50), height=2, width=5)
-my_radio_1.grid(row = 40, column = 0, pady = 2)
-my_radio_2 = tk.Radiobutton(groot)
-my_radio_2.config(text=input("write false answer here"), variable=my_tkVar, value=2, font=(50), height=2, width=5)
-my_radio_2.grid(row = 60, column = 0, pady = 2)
-#my_radio_1.pack()
-#my_radio_2.pack()
+my_radio_1 = tk.Radiobutton(frame_4,text=("True"), variable=my_tkVar,
+                            value=1, font=('Arial','16'),bg='indianred1')
+my_radio_1.place(rely = .30,relx= .08, relheight = .05, anchor = 'w')
+my_radio_2 = tk.Radiobutton(frame_4,text="False", variable=my_tkVar,
+                            value=2, font=('Arial','16'),bg='indianred1')
 
+my_radio_2.place(rely = .45,relx= .08, relheight = .05, anchor = 'w')
+button_1 = tk.Button(frame_4, text='Next', bg='limegreen',
+                     font=('Arial','16'), width=7)
+button_1.place(rely = .8, relx= .8)
