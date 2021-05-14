@@ -18,6 +18,11 @@ titleLabel2 = tk.Label(frame_4,text= "Type your question in the box.", relief='s
 titleLabel2.place(x=0,y=0,relwidth=1,relheight=.08)
 
 txtbox1= tk.Entry(frame_4,font=('Raleway', '12'))
+txtbox1.tag_configure('center', justfy='center', wrap='word')
+txtbox1.insert('1.0','Question Variable will go here')
+txtbox1.config(state='disabled',borderwidth=1,
+               relief='solid')
+txtbox1.tag_add('center','1.0','end')
 txtbox1.place(relx =.05, rely=.11, relheight=.10, relwidth=.9)
 
 
