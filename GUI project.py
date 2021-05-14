@@ -20,6 +20,9 @@ def func_one():
 def doButton2():
     frame_3.tkraise()
 
+def doButton3():
+    frame_6.tkraise()
+
 frame_3 = tk.Frame(root, bg="red")
 frame_3.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -117,6 +120,39 @@ E5 = tk.Entry(frame_3, width = 90)
 E5.place(rely=.70,relx=.10,relheight=.05, anchor='w')
 
 B3 = tk.Button(frame_3,text="Next", bg='limegreen', width=7,font=('Arial','16'), command = doButton2  )
+B3.place(rely=.85,relx=.8,relheight=.05, anchor='w')
+
+#Frame 6
+
+bottom_frame = tk.Frame(root, bg="indianred1", padx=5, pady=5)
+bottom_frame.grid(row=1, column=0, padx=10, pady=10, sticky=(tk.NSEW))
+
+bottom_frame.columnconfigure(0, weight=1)
+bottom_frame.rowconfigure(0, weight=1)
+
+frame_6 = tk.Frame(root, bg="indianred1")
+frame_6.place(x=0, y=0, relwidth=1, relheight=1)
+
+my_tkVar = tk.IntVar()
+my_tkVar.set(2)
+
+TitleLabel = tk.Label(frame_6,text= "True or False Question Appearance", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
+TitleLabel.place(x=0, y=0, relwidth = 1, relheight = .08)
+
+L1 = tk.Label(frame_6, text = "Type Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+L1.place(rely=.11,relx=.05,relheight=.05, anchor='w')
+
+E1 = tk.Entry(frame_6, width = 90)
+E1.place(rely=.15,relx=.05,relheight=.05, anchor='w')
+
+my_radio_1 = tk.Radiobutton(frame_6,text=("True"), variable=my_tkVar,value=1, font=('Arial','16'),bg='indianred1')
+my_radio_1.place(rely = .30,relx= .08, relheight = .05, anchor = 'w')
+
+my_radio_2 = tk.Radiobutton(frame_6,text="False", variable=my_tkVar,value=2, font=('Arial','16'),bg='indianred1')
+my_radio_2.place(rely = .45,relx= .08, relheight = .05, anchor = 'w')
+
+
+B3 = tk.Button(frame_6,text="Next", bg='limegreen', width=7,font=('Arial','16'), command = doButton2  )
 B3.place(rely=.85,relx=.8,relheight=.05, anchor='w')
 
 
