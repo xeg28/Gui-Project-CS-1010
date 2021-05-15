@@ -33,6 +33,12 @@ myBool4=tk.BooleanVar()
 myBool4.set(False)
 myBool5=tk.BooleanVar()
 myBool5.set(False)
+
+RadioVar = tk.IntVar()
+RadioVar.set(0)
+
+radioVar1 = tk.IntVar()
+radioVar1.set(0)
 #Lists and Variables(Very Important)
 titleVar = 0
 qTypes= []
@@ -43,21 +49,92 @@ randans = []
 randAnswers = []
 list1= []
 options = []
-i = 0
+i = -1
+u = -1
+q = -1
+z = -1
+n = -1
+score = 0
+
+
+def doButton9():
+    exit()
+
+
+def option(l,o,s,t):
+    #radio buttons in frame 7
+    global RadioVar
+
+    radio1 = tk.Radiobutton(frame_7)
+    radio1.config(text=options[l], variable=RadioVar, value=1,
+                   bg='indianred1', font=('Arial', '16'))
+    radio2 = tk.Radiobutton(frame_7)
+    radio2.config(text=options[o], variable=RadioVar, value=2,
+                   bg='indianred1', font=('Arial', '16'))
+    radio3 = tk.Radiobutton(frame_7)
+    radio3.config(text=options[s], variable=RadioVar, value=3,
+                   bg='indianred1', font=('Arial', '16'))
+    radio4 = tk.Radiobutton(frame_7)
+    radio4.config(text=options[t], variable=RadioVar, value=4,
+                   bg='indianred1', font=('Arial', '16'))
+    radio1.place(rely = .25,relx= .1, relheight = .05, anchor = 'w')
+    radio2.place(rely = .35,relx= .1, relheight = .05, anchor = 'w')
+    radio3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
+    radio4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
+
+    #radio buttons in frame 8
+    radioVar1 = tk.IntVar()
+    radioVar1.set(0)
+    Radio_1 = tk.Radiobutton(frame_8)
+    Radio_1.config(text=options[l], variable=radioVar1, value=1,
+                   bg='indianred1', font=('Arial', '16'))
+    Radio_2 = tk.Radiobutton(frame_8)
+    Radio_2.config(text=options[l], variable=radioVar1, value=2,
+                   bg='indianred1', font=('Arial', '16'))
+    Radio_3 = tk.Radiobutton(frame_8)
+    Radio_3.config(text=options[l], variable=radioVar1, value=3,
+                   bg='indianred1', font=('Arial', '16'))
+    Radio_4 = tk.Radiobutton(frame_8)
+    Radio_4.config(text=options[l], variable=radioVar1, value=4,
+                   bg='indianred1', font=('Arial', '16'))
+    Radio_5 = tk.Radiobutton(frame_8)
+    Radio_5.config(text=options[l], variable=radioVar1, value=5,
+                   bg='indianred1', font=('Arial', '16'))
+    Radio_1.place(rely = .25,relx= .1, relheight = .05, anchor = 'w')
+    Radio_2.place(rely = .35,relx= .1, relheight = .05, anchor = 'w')
+    Radio_3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
+    Radio_4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
+    Radio_5.place(rely = .65,relx= .1, relheight = .05, anchor = 'w')
 def question():
     global i
-    test(i)
-    if qTypes[i] == 1:
-        frame_7.tkraise()
+    global u
+    global q
+    global z
+    global n
+    global score
+    i += 1
+    u += 1
+    q += 2
+    z += 3
+    n += 4
+    if i == numOfQues:
+        frame_8r.tkraise()
+    else:
+        if qTypes[i] == 1:
+            frame_7.tkraise()
+            test(i)
+            option(u,q,z,n)
 
-    elif qTypes[i] == 2:
+        if RadioVar.get() == answers[i]:
+            score += 1
+    if qTypes[i] == 2:
         frame_8.tkraise()
     elif qTypes[i] == 3:
         print('')
-    elif qtypes[i] == 4:
+    elif qTypes[i] == 4:
         print('')
-    i += 1
-    
+        
+    print(score)
 def test(y):
     #labels in frame 7
     text_1 = tk.Text(frame_7,bg='deep sky blue',
@@ -105,49 +182,6 @@ def test(y):
     label_11.place(rely=.65,relx=.05,relheight=.05, anchor='w')
 
 
-    #radio buttons in frame 7
-    RadioVar = tk.IntVar()
-    RadioVar.set(0)
-    radio1 = tk.Radiobutton(frame_7)
-    radio1.config(text=options[y], variable=RadioVar, value=1,
-                   bg='indianred1', font=('Arial', '16'))
-    radio2 = tk.Radiobutton(frame_7)
-    radio2.config(text=options[y], variable=RadioVar, value=2,
-                   bg='indianred1', font=('Arial', '16'))
-    radio3 = tk.Radiobutton(frame_7)
-    radio3.config(text=options[y], variable=RadioVar, value=3,
-                   bg='indianred1', font=('Arial', '16'))
-    radio4 = tk.Radiobutton(frame_7)
-    radio4.config(text=options[y], variable=RadioVar, value=4,
-                   bg='indianred1', font=('Arial', '16'))
-    radio1.place(rely = .25,relx= .1, relheight = .05, anchor = 'w')
-    radio2.place(rely = .35,relx= .1, relheight = .05, anchor = 'w')
-    radio3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
-    radio4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
-
-    #radio buttons in frame 8
-    radioVar1 = tk.IntVar()
-    radioVar1.set(0)
-    Radio_1 = tk.Radiobutton(frame_8)
-    Radio_1.config(text=options[y], variable=radioVar1, value=1,
-                   bg='indianred1', font=('Arial', '16'))
-    Radio_2 = tk.Radiobutton(frame_8)
-    Radio_2.config(text=options[y], variable=radioVar1, value=2,
-                   bg='indianred1', font=('Arial', '16'))
-    Radio_3 = tk.Radiobutton(frame_8)
-    Radio_3.config(text=options[y], variable=radioVar1, value=3,
-                   bg='indianred1', font=('Arial', '16'))
-    Radio_4 = tk.Radiobutton(frame_8)
-    Radio_4.config(text=options[y], variable=radioVar1, value=4,
-                   bg='indianred1', font=('Arial', '16'))
-    Radio_5 = tk.Radiobutton(frame_8)
-    Radio_5.config(text=options[y], variable=radioVar1, value=5,
-                   bg='indianred1', font=('Arial', '16'))
-    Radio_1.place(rely = .25,relx= .1, relheight = .05, anchor = 'w')
-    Radio_2.place(rely = .35,relx= .1, relheight = .05, anchor = 'w')
-    Radio_3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
-    Radio_4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
-    Radio_5.place(rely = .65,relx= .1, relheight = .05, anchor = 'w')
     #Buttons
     Button_1 = tk.Button(frame_7, text='Next', bg='limegreen',command = question,
                          font=('Arial','16'), width=7)
@@ -184,10 +218,12 @@ def doButton2():
             if (E3.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_3.tkraise()
             elif(rVar.get() == 0):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_3.tkraise()
             else: 
                 questions.append(E3.get())
@@ -196,6 +232,7 @@ def doButton2():
                 options.append(E5.get())
                 options.append(E6.get())
                 options.append(E7.get())
+                print('options = ', options)
                 intLabel = int(rVar.get())
                 qTypes.append(quesType)
                 answers.append(rVar.get())
@@ -204,10 +241,12 @@ def doButton2():
             if (E8.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_4.tkraise()
             elif(myInt.get() == 0):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_4.tkraise()
             else: 
                 questions.append(E8.get())
@@ -219,19 +258,20 @@ def doButton2():
                     
                 intLabel = int(myInt.get())
                 qTypes.append(quesType)
-                answers.append(rVar.get())
+                answers.append(myInt.get())
 
         if quesType == 3:
             if (txtbox1.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_5.tkraise()
             elif(mytkVar.get() == 0):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_5.tkraise()
             else: 
-                titleVar+=1
                 qTypes.append(quesType)
                 answers.append(mytkVar.get())
                    
@@ -240,10 +280,12 @@ def doButton2():
             if (txtBox1.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_6.tkraise()
             elif(answer.get() == '' ):
                 tk.messagebox.showwarning(title='Input Error',
                                        message='Type in a question and/or select an answer.' )
+                titleVar-=1
                 frame_6.tkraise()
             else: 
                 questions.append(txtBox1.get())
@@ -275,19 +317,17 @@ def doButton3():
         frame_4.tkraise()
     elif quesType == 3:
         qTypes.append(quesType)
-        print(qTypes)
         frame_5.tkraise()
     elif quesType == 4:
         qTypes.append(quesType)
-        print(qTypes)
         frame_6.tkraise()
     elif quesType == 0:
         tk.messagebox.showwarning(title='Input Error',
                                        message='Select one of the options.' )
-def doButton4():
-    print('worked')
 #Defining Frames
-
+frame_8r = tk.Frame(root, bg="indianred1")
+frame_8r.place(x=0, y=0, relwidth=1, relheight=1)
+    
 frame_8 = tk.Frame(root,bg='indianred1')
 frame_8.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -356,7 +396,7 @@ B1.place(rely=.72,relx=.08,relheight=.05, anchor='w')
 
 B2 = tk.Button(bottom_frame,text="Next", bg='limegreen', width=7,
                font=('Arial','16'), command = doButton2)
-B2.place(rely=.85,relx=.8,relheight=.05, anchor='w')
+B2.place(rely=.8,relx=.8,relheight=.05, anchor='w')
 
 #Frame 2
 
@@ -579,6 +619,18 @@ answer.place(relx=.08,rely=.31)
 button_2 = tk.Button(frame_6, text='Next', bg='limegreen',
                      font=('Arial','16'), width=7, command = doButton2)
 button_2.place(rely = .8, relx= .8)
+
+#RESULTS PAGE
+TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
+TitleLabelr.place(x=0, y=0, relwidth = 1, relheight = .08)
+
+L10r = tk.Label(frame_8r, text = "Score:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
+
+L11r = tk.Label(frame_8r, text = "Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
+B3 = tk.Button(frame_8r,text="Show Questions",width=15,font=('Arial','16'), command = doButton9  )
+B3.place(rely=.85,relx=.01,relheight=.05, anchor='w')
 
 
 
