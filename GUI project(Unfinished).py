@@ -61,6 +61,7 @@ def doButton9():
     exit()
 
 def results():
+    global percent
     #RESULTS PAGE
     frame_8r.tkraise()
     TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
@@ -69,7 +70,7 @@ def results():
     L10r = tk.Label(frame_8r, text = "Score:" + str(score) +'/'+ str(numOfQues),height = 2, width = 30,bg="indianred1", font=('Arial','16'))
     L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
 
-    L11r = tk.Label(frame_8r, text = "Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+    L11r = tk.Label(frame_8r, text = str(percent)+'%',height = 2, width = 30,bg="indianred1", font=('Arial','16'))
     L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
     B3 = tk.Button(frame_8r,text="EXIT",width=15,bg='limegreen',
                font=('Arial','16'), command = doButton9  )
@@ -126,6 +127,7 @@ def question():
     global z
     global n
     global score
+    global percent
     if RadioVar.get() == answers[i]:
         score+=1
     i += 1
@@ -137,6 +139,7 @@ def question():
         n += 4
 
     if i == numOfQues:
+        percent = round(score/numOfQues*100,2)
         results()
      
     else:
