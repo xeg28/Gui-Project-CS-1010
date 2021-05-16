@@ -65,17 +65,25 @@ def results():
     global percent
     #RESULTS PAGE
     frame_8r.tkraise()
-    TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
+    frame_10 = tk.Frame(frame_8r, bg = 'deep sky blue')
+    frame_10.place(relx=.22, rely=.12, width=365, height=261)
+    frame_9 = tk.Frame(frame_8r, bg = '#f8f8f8')
+    frame_9.place(relx=.25, rely=.15, width=325, height=220)
+
+    TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue',
+                           font=('Times New Roman', '24', 'bold'))
     TitleLabelr.place(x=0, y=0, relwidth = 1, relheight = .08)
 
-    L10r = tk.Label(frame_8r, text = "Score:" + str(score) +'/'+ str(numOfQues),height = 2, width = 30,bg="indianred1", font=('Arial','16'))
-    L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
+    L10r = tk.Label(frame_9, text = "Score:" + str(score) +'/'+ str(numOfQues),height = 2, width = 13,bg="white",
+                    font=('Arial','30','bold'))
+    L10r.grid(row = 0, column=0)
 
-    L11r = tk.Label(frame_8r, text = str(percent)+'%',height = 2, width = 30,bg="indianred1", font=('Arial','16'))
-    L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
+    L11r = tk.Label(frame_9, text = str(percent)+'%',height = 2, width = 13,bg="white",
+                    font=('Arial','30','bold'))
+    L11r.grid(row=1, column=0)
     B3 = tk.Button(frame_8r,text="EXIT",width=15,bg='limegreen',
                font=('Arial','16'), command = doButton9  )
-    B3.place(rely=.85,relx=.01,relheight=.08, anchor='w')
+    B3.place(rely=.65,relx=.60,relheight=.08, anchor='w')
 def option(l,o,s,t):
     #radio buttons in frame 7
     global RadioVar
@@ -142,6 +150,9 @@ def question():
             score+=1
             fVar=0
             fix = 1
+    if qTypes[i]==3:
+        print('')
+        
     i += 1
     qTypes.append(100)
     if i != 0 and qTypes[i]==1:
@@ -329,7 +340,8 @@ def doButton2():
                                        message='Type in a question and/or select an answer.' )
                 titleVar-=1
                 frame_5.tkraise()
-            else: 
+            else:
+                questions.append(txtbox1.get())
                 qTypes.append(quesType)
                 answers.append(mytkVar.get())
                    
@@ -347,7 +359,6 @@ def doButton2():
                 frame_6.tkraise()
             else: 
                 questions.append(txtBox1.get())
-
                 qTypes.append(quesType)
                 answers.append(answer.get())
   
@@ -681,20 +692,6 @@ answer.place(relx=.08,rely=.31)
 button_2 = tk.Button(frame_6, text='Next', bg='limegreen',
                      font=('Arial','16'), width=7, command = doButton2)
 button_2.place(rely = .8, relx= .8)
-
-#RESULTS PAGE
-TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
-TitleLabelr.place(x=0, y=0, relwidth = 1, relheight = .08)
-
-L10r = tk.Label(frame_8r, text = "Score:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
-L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
-
-L11r = tk.Label(frame_8r, text = "Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
-L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
-B3 = tk.Button(frame_8r,text="EXIT",width=15,bg='limegreen',
-               font=('Arial','16'), command = doButton9  )
-B3.place(rely=.85,relx=.01,relheight=.08, anchor='w')
-
 
 
 
