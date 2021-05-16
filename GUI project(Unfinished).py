@@ -136,17 +136,25 @@ def question():
         if RadioVar.get() == answers[i]:
             score+=1
             fVar = 1
+            fix = 0
     if qTypes[i]==2:  
         if radioVar1.get() == answers[i]:
             score+=1
             fVar=0
+            fix = 1
     i += 1
     qTypes.append(100)
     if i != 0 and qTypes[i]==1:
-        u += 4
-        q += 4
-        z += 4
-        n += 4
+        if fix != 0:
+            u += 5
+            q += 5
+            z += 5
+            n += 5
+        else:
+            u += 4
+            q += 4
+            z += 4
+            n += 4
         fVar = 1
     if i != 0 and qTypes[i]==2:
         if fVar != 0:
