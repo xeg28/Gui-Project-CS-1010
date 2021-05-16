@@ -131,27 +131,38 @@ def question():
     global t
     global score
     global percent
+    fVar=0
     if qTypes[i]==1:  
         if RadioVar.get() == answers[i]:
             score+=1
+            fVar = 1
     if qTypes[i]==2:  
         if radioVar1.get() == answers[i]:
             score+=1
+            fVar=0
     i += 1
-
+    qTypes.append(100)
     if i != 0 and qTypes[i]==1:
         u += 4
         q += 4
         z += 4
         n += 4
+        fVar = 1
     if i != 0 and qTypes[i]==2:
-        u += 5
-        q += 5
-        z += 5
-        n += 5
-        t += 5
+        if fVar != 0:
+            u += 4
+            q += 4
+            z += 4
+            n += 4
+            t += 4
+        else:
+            u += 5
+            q += 5
+            z += 5
+            n += 5
+            t += 5
     if i == numOfQues:
-        percent = round(score/numOfQues*100,2)
+        percent = round(score/numOfQues*100,1)
         results()
      
     else:
@@ -245,7 +256,6 @@ def doButton2():
     global numOfQues
     global titleVar
     global QuizTimer
-    global quesType
     if var1.isnumeric() and var2.isnumeric():
         numOfQues=int(var1)
         QuizTimer=int(var2)
@@ -275,8 +285,8 @@ def doButton2():
                 intLabel = int(rVar.get())
                 qTypes.append(quesType)
                 answers.append(rVar.get())
-
-    
+                qTypes.pop()
+                
         if quesType == 2:
             if (E8.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
@@ -295,11 +305,11 @@ def doButton2():
                 options.append(E11.get())
                 options.append(E12.get())
                 options.append(E13.get())
-                    
+                print('options = ', options)                    
                 intLabel = int(myInt.get())
                 qTypes.append(quesType)
                 answers.append(myInt.get())
-
+                qTypes.pop()
         if quesType == 3:
             if (txtbox1.get() == ''):
                 tk.messagebox.showwarning(title='Input Error',
@@ -348,7 +358,7 @@ def doButton2():
     
 def doButton3():
     global quesType
-    global titleVar    
+    global titleVar
     quesType = radioVar.get()
     if quesType == 1:
         qTypes.append(quesType)
