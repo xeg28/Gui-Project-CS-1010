@@ -50,17 +50,30 @@ randAnswers = []
 list1= []
 options = []
 i = -1
-u = -1
-q = -1
-z = -1
-n = -1
+u = 0
+q = 1
+z = 2
+n = 3
 score = 0
 
 
 def doButton9():
     exit()
 
+def results():
+    #RESULTS PAGE
+    frame_8r.tkraise()
+    TitleLabelr = tk.Label(frame_8r,text= "Quiz Results", relief='solid',borderwidth = 1, bg='deep sky blue', font=('Times New Roman', '24', 'bold'))
+    TitleLabelr.place(x=0, y=0, relwidth = 1, relheight = .08)
 
+    L10r = tk.Label(frame_8r, text = "Score:" + str(score) +'/'+ str(numOfQues),height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+    L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
+
+    L11r = tk.Label(frame_8r, text = "Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
+    L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
+    B3 = tk.Button(frame_8r,text="EXIT",width=15,bg='limegreen',
+               font=('Arial','16'), command = doButton9  )
+    B3.place(rely=.85,relx=.01,relheight=.08, anchor='w')
 def option(l,o,s,t):
     #radio buttons in frame 7
     global RadioVar
@@ -82,6 +95,7 @@ def option(l,o,s,t):
     radio3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
     radio4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
 
+def option2():
     #radio buttons in frame 8
     radioVar1 = tk.IntVar()
     radioVar1.set(0)
@@ -112,28 +126,33 @@ def question():
     global z
     global n
     global score
+    if RadioVar.get() == answers[i]:
+        score+=1
     i += 1
-    u += 1
-    q += 2
-    z += 3
-    n += 4
+
+    if i != 0:
+        u += 4
+        q += 4
+        z += 4
+        n += 4
+
     if i == numOfQues:
-        frame_8r.tkraise()
+        results()
+     
     else:
         if qTypes[i] == 1:
             frame_7.tkraise()
             test(i)
             option(u,q,z,n)
 
-        if RadioVar.get() == answers[i]:
-            score += 1
     if qTypes[i] == 2:
         frame_8.tkraise()
+      
     elif qTypes[i] == 3:
         print('')
     elif qTypes[i] == 4:
         print('')
-        
+
     print(score)
 def test(y):
     #labels in frame 7
@@ -629,8 +648,9 @@ L10r.place(rely=.11,relx=.01,relheight=.05, anchor='w')
 
 L11r = tk.Label(frame_8r, text = "Question:",height = 2, width = 30,bg="indianred1", font=('Arial','16'))
 L11r.place(rely=.16,relx=.01,relheight=.05, anchor='w')
-B3 = tk.Button(frame_8r,text="Show Questions",width=15,font=('Arial','16'), command = doButton9  )
-B3.place(rely=.85,relx=.01,relheight=.05, anchor='w')
+B3 = tk.Button(frame_8r,text="EXIT",width=15,bg='limegreen',
+               font=('Arial','16'), command = doButton9  )
+B3.place(rely=.85,relx=.01,relheight=.08, anchor='w')
 
 
 
