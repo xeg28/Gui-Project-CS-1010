@@ -54,6 +54,7 @@ u = 0
 q = 1
 z = 2
 n = 3
+t = 4
 score = 0
 
 
@@ -96,24 +97,25 @@ def option(l,o,s,t):
     radio3.place(rely = .45,relx= .1, relheight = .05, anchor = 'w')
     radio4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
 
-def option2():
+def option2(w,e,r,t,y):
     #radio buttons in frame 8
+    global radioVar1
     radioVar1 = tk.IntVar()
     radioVar1.set(0)
     Radio_1 = tk.Radiobutton(frame_8)
-    Radio_1.config(text=options[l], variable=radioVar1, value=1,
+    Radio_1.config(text=options[w], variable=radioVar1, value=1,
                    bg='indianred1', font=('Arial', '16'))
     Radio_2 = tk.Radiobutton(frame_8)
-    Radio_2.config(text=options[l], variable=radioVar1, value=2,
+    Radio_2.config(text=options[e], variable=radioVar1, value=2,
                    bg='indianred1', font=('Arial', '16'))
     Radio_3 = tk.Radiobutton(frame_8)
-    Radio_3.config(text=options[l], variable=radioVar1, value=3,
+    Radio_3.config(text=options[r], variable=radioVar1, value=3,
                    bg='indianred1', font=('Arial', '16'))
     Radio_4 = tk.Radiobutton(frame_8)
-    Radio_4.config(text=options[l], variable=radioVar1, value=4,
+    Radio_4.config(text=options[t], variable=radioVar1, value=4,
                    bg='indianred1', font=('Arial', '16'))
     Radio_5 = tk.Radiobutton(frame_8)
-    Radio_5.config(text=options[l], variable=radioVar1, value=5,
+    Radio_5.config(text=options[y], variable=radioVar1, value=5,
                    bg='indianred1', font=('Arial', '16'))
     Radio_1.place(rely = .25,relx= .1, relheight = .05, anchor = 'w')
     Radio_2.place(rely = .35,relx= .1, relheight = .05, anchor = 'w')
@@ -126,18 +128,28 @@ def question():
     global q
     global z
     global n
+    global t
     global score
     global percent
-    if RadioVar.get() == answers[i]:
-        score+=1
+    if qTypes[i]==1:  
+        if RadioVar.get() == answers[i]:
+            score+=1
+    if qTypes[i]==2:  
+        if radioVar1.get() == answers[i]:
+            score+=1
     i += 1
 
-    if i != 0:
+    if i != 0 and qTypes[i]==1:
         u += 4
         q += 4
         z += 4
         n += 4
-
+    if i != 0 and qTypes[i]==2:
+        u += 5
+        q += 5
+        z += 5
+        n += 5
+        t += 5
     if i == numOfQues:
         percent = round(score/numOfQues*100,2)
         results()
@@ -148,10 +160,13 @@ def question():
             test(i)
             option(u,q,z,n)
 
-    if qTypes[i] == 2:
-        frame_8.tkraise()
+        elif qTypes[i] == 2:
+            frame_8.tkraise()
+            test(i)
+            option2(u,q,z,n,t)
+            
       
-    elif qTypes[i] == 3:
+    if qTypes[i] == 3:
         print('')
     elif qTypes[i] == 4:
         print('')
@@ -216,6 +231,7 @@ def func_one():
     global RandomQues
     global QuizResults
     global RandomOpt
+    global radioVar
     RandomQues = bool1.get()
     QuizResults = bool2.get()
     RandomOpt= bool3.get()
@@ -229,6 +245,7 @@ def doButton2():
     global numOfQues
     global titleVar
     global QuizTimer
+    global quesType
     if var1.isnumeric() and var2.isnumeric():
         numOfQues=int(var1)
         QuizTimer=int(var2)
@@ -258,6 +275,7 @@ def doButton2():
                 intLabel = int(rVar.get())
                 qTypes.append(quesType)
                 answers.append(rVar.get())
+
     
         if quesType == 2:
             if (E8.get() == ''):
@@ -317,6 +335,7 @@ def doButton2():
   
             print(questions)
         if titleVar > numOfQues:
+            print('question types:',qTypes)
             question()
 
         
@@ -329,14 +348,16 @@ def doButton2():
     
 def doButton3():
     global quesType
-    global titleVar
+    global titleVar    
     quesType = radioVar.get()
     if quesType == 1:
         qTypes.append(quesType)
         frame_3.tkraise()
+        print(qTypes)
     elif quesType == 2:
         qTypes.append(quesType)
         frame_4.tkraise()
+        print(qTypes)
     elif quesType == 3:
         qTypes.append(quesType)
         frame_5.tkraise()
@@ -346,6 +367,7 @@ def doButton3():
     elif quesType == 0:
         tk.messagebox.showwarning(title='Input Error',
                                        message='Select one of the options.' )
+
 #Defining Frames
 frame_8r = tk.Frame(root, bg="indianred1")
 frame_8r.place(x=0, y=0, relwidth=1, relheight=1)
