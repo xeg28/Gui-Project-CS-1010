@@ -39,6 +39,9 @@ RadioVar.set(0)
 
 radioVar1 = tk.IntVar()
 radioVar1.set(0)
+
+TorFVar = tk.IntVar()
+TorFVar.set(0)
 #Lists and Variables(Very Important)
 titleVar = 0
 qTypes= []
@@ -56,10 +59,13 @@ z = 2
 n = 3
 t = 4
 score = 0
+fVar=2
+fix=2
 
 
 def doButton9():
     exit()
+
 
 def results():
     global percent
@@ -74,7 +80,7 @@ def results():
                            font=('Times New Roman', '24', 'bold'))
     TitleLabelr.place(x=0, y=0, relwidth = 1, relheight = .08)
 
-    L10r = tk.Label(frame_9, text = "Score:" + str(score) +'/'+ str(numOfQues),height = 2, width = 13,bg="white",
+    L10r = tk.Label(frame_9, text = "Score: " + str(score) +'/'+ str(numOfQues),height = 2, width = 13,bg="white",
                     font=('Arial','30','bold'))
     L10r.grid(row = 0, column=0)
 
@@ -131,6 +137,7 @@ def option2(w,e,r,t,y):
     Radio_4.place(rely = .55,relx= .1, relheight = .05, anchor = 'w')
     Radio_5.place(rely = .65,relx= .1, relheight = .05, anchor = 'w')
 def question():
+
     global i
     global u
     global q
@@ -139,7 +146,10 @@ def question():
     global t
     global score
     global percent
-    fVar=0
+    global fVar
+    global fix
+    global Aanswer
+
     if qTypes[i]==1:  
         if RadioVar.get() == answers[i]:
             score+=1
@@ -151,30 +161,36 @@ def question():
             fVar=0
             fix = 1
     if qTypes[i]==3:
-        print('')
-        
+        if TorFVar.get() == answers[i]:
+            score+=1
+    if qTypes[i]==4:
+        if Aanswer.get() == answers [i]:
+            score+=1
+
     i += 1
     qTypes.append(100)
     if i != 0 and qTypes[i]==1:
-        if fix != 0:
+        if fix == 1:
             u += 5
             q += 5
             z += 5
             n += 5
-        else:
-            u += 4
-            q += 4
-            z += 4
-            n += 4
-        fVar = 1
-    if i != 0 and qTypes[i]==2:
-        if fVar != 0:
+            t += 5
+        elif fix == 0:
             u += 4
             q += 4
             z += 4
             n += 4
             t += 4
-        else:
+        fVar = 1
+    if i != 0 and qTypes[i]==2:
+        if fVar == 1:
+            u += 4
+            q += 4
+            z += 4
+            n += 4
+            t += 4
+        elif fVar ==0:
             u += 5
             q += 5
             z += 5
@@ -194,12 +210,12 @@ def question():
             frame_8.tkraise()
             test(i)
             option2(u,q,z,n,t)
-            
-      
-    if qTypes[i] == 3:
-        print('')
-    elif qTypes[i] == 4:
-        print('')
+        elif qTypes[i] ==3:
+            frame_11.tkraise()
+            test(i)
+        elif qTypes[i] == 4:
+            frame_12.tkraise()
+            test(i)
 
     print(score)
 def test(y):
@@ -256,7 +272,53 @@ def test(y):
     Button_2 = tk.Button(frame_8, text='Next', bg='limegreen',command = question,
                          font=('Arial','16'), width=7)
     Button_2.place(rely = .7, relx= .8)
-    
+
+    #----- true or false appearance frame -----
+    global TorFVar
+
+
+    TorFVar = tk.IntVar()
+    TorFVar.set(0)
+
+    AtitleVar = tk.Text(frame_11,bg='deep sky blue',
+                      font=('Times New Roman', '20', 'bold'))
+    AtitleVar.tag_configure('center',justify='center', wrap='word')
+    AtitleVar.insert('1.0',questions[y])
+    AtitleVar.config(state='disabled',borderwidth=1,
+                relief='solid')
+    AtitleVar.tag_add('center','1.0','end')
+    AtitleVar.place(x=0,y=0,relwidth=1,relheight=.15)
+
+
+    my_radio_1 = tk.Radiobutton(frame_11,text=("True"), variable=TorFVar,value=1, font=('Arial','16'),bg='indianred1')
+    my_radio_1.place(rely = .30,relx= .13, relheight = .05, anchor = 'w')
+
+    my_radio_2 = tk.Radiobutton(frame_11,text="False", variable=TorFVar,value=2, font=('Arial','16'),bg='indianred1')
+    my_radio_2.place(rely = .50,relx= .13, relheight = .05, anchor = 'w')
+
+
+    AB3 = tk.Button(frame_11,text="Next", bg='limegreen', width=7,font=('Arial','16') , command=question)
+    AB3.place(rely=.8,relx=.8, anchor='w')
+#----- Short Response Appearance -----
+
+# Labels and text boxes
+    Atext_1 = tk.Text(frame_12,bg='deep sky blue',
+                      font=('Times New Roman', '20', 'bold'))
+    Atext_1.tag_configure('center',justify='center', wrap='word')
+    Atext_1.insert('1.0',questions[y])
+    Atext_1.config(state='disabled',borderwidth=1,
+                relief='solid')
+    Atext_1.tag_add('center','1.0','end')
+    Atext_1.place(x=0,y=0,relwidth=1,relheight=.15)
+
+    ALabel_4 = tk.Label(frame_12, text=("Type your answer here."),
+                       font=('arial', 16), bg='indianred1')
+    ALabel_4.place(relx=.075,rely=.25)
+
+    Abutton_2 = tk.Button(frame_12, text='Next', bg='limegreen',
+                         font=('Arial','16'), width=7,command=question)
+    Abutton_2.place(rely = .8, relx= .8)
+
 def func_one():
     global RandomQues
     global QuizResults
@@ -344,6 +406,7 @@ def doButton2():
                 questions.append(txtbox1.get())
                 qTypes.append(quesType)
                 answers.append(mytkVar.get())
+                qTypes.pop()
                    
 
         if quesType == 4:
@@ -361,6 +424,7 @@ def doButton2():
                 questions.append(txtBox1.get())
                 qTypes.append(quesType)
                 answers.append(answer.get())
+                qTypes.pop()
   
             print(questions)
         if titleVar > numOfQues:
@@ -398,6 +462,12 @@ def doButton3():
                                        message='Select one of the options.' )
 
 #Defining Frames
+frame_12= tk.Frame(root, bg='indianred1')
+frame_12.place(x=0,y=0,relwidth=1, relheight=1)
+
+frame_11 = tk.Frame(root, bg="indianred1")
+frame_11.place(x=0, y=0, relwidth=1, relheight=1)
+    
 frame_8r = tk.Frame(root, bg="indianred1")
 frame_8r.place(x=0, y=0, relwidth=1, relheight=1)
     
@@ -682,7 +752,7 @@ Label_1 = tk.Label(frame_6,text= "Type your question in the box.", relief='solid
                       font=('Times New Roman', '24', 'bold'))
 Label_1.place(x=0,y=0,relwidth=1, relheight=.08)
 
-Label_2 = tk.Label(frame_6, text=("Type your answer here."),
+Label_2 = tk.Label(frame_6, text=("Type your answer here (Should not be very long)."),
                    font=('arial', 16), bg='indianred1')
 Label_2.place(relx=.075,rely=.25)
 
@@ -695,8 +765,9 @@ button_2.place(rely = .8, relx= .8)
 
 
 
-
-
+# For text answer
+Aanswer = tk.Entry(frame_12)
+Aanswer.place(relx=.08,rely=.33)
 
 
 
